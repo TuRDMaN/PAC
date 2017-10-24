@@ -30,11 +30,15 @@ function FindProxyForURL(url, host) {
 // If the IP address of the local machine is within a defined
 // subnet, send to a specific proxy.
     if (isInNet(myIpAddress(), "192.168.2.0", "255.255.255.0"))
-        return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
+        return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; PROXY 192.168.2.136:8122; DIRECT";
     if (isInNet(myIpAddress(), "192.168.1.0", "255.255.255.0"))
         return "PROXY 192.168.1.37:8123; PROXY 192.168.2.145:8124; DIRECT";
+    if (isInNet(myIpAddress(), "192.168.4.0", "255.255.255.0"))
+        return "PROXY 192.168.1.37:8123; PROXY 192.168.2.145:8124; DIRECT";
+    if (isInNet(myIpAddress(), "192.168.3.0", "255.255.255.0"))
+        return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
  
 // DEFAULT RULE: All other traffic, use below proxies, in fail-over order.
-    return "PROXY 192.168.1.37:8123; PROXY 192.168.2.145:8124; DIRECT";
+    return "DIRECT";
  
 }
