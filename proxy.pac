@@ -1,43 +1,65 @@
 function FindProxyForURL(url, host) {
+var patterns = [{"name":"Local","url":"*192.168.*.*","regex":".*192\\.168\\..*\\..*","enabled":true,"temp":false,"whitelist":"Inclusive","type":"wildcard"}], white = -1;
+for (var i=0, sz=patterns.length; i<sz; i++) {
+// ProxyPattern instances
+var p = patterns[i];
+if (p.enabled) {
+if (RegExp(p.regex).test(url)) {
+if (p.whitelist != "Inclusive") {
+// Black takes priority over white -- skip this pattern
+return "DIRECT";
+}
+else if (white == -1) {
+white = i; // store first matched index and continue checking for blacklist matches!
+}
+}
+}
+}
+if (white != -1) return "DIRECT";
 
-// If the hostname matches, send direct.
-//    if (dnsDomainIs(host, "intranet.domain.com") ||
-//        shExpMatch(host, "(*.abcdomain.com|abcdomain.com)"))
-//        return "DIRECT";
-    if (dnsDomainIs(host, "*.matt.lan") ||
-        shExpMatch(host, "(*.matt.lan|matt.lan)") ||
-        shExpMatch(host, "(millar.my.to)") ||
-        shExpMatch(host, "(mbf.my.to)"))
-        return "DIRECT";
+var patterns = [{"name":"YouTube","url":"*.youtube.com*","regex":".*\\.youtube\\.com.*","enabled":true,"temp":false,"whitelist":"Inclusive","type":"wildcard"}], white = -1;
+for (var i=0, sz=patterns.length; i<sz; i++) {
+// ProxyPattern instances
+var p = patterns[i];
+if (p.enabled) {
+if (RegExp(p.regex).test(url)) {
+if (p.whitelist != "Inclusive") {
+// Black takes priority over white -- skip this pattern
+return "PROXY 192.168.2.136:8122";
+}
+else if (white == -1) {
+white = i; // store first matched index and continue checking for blacklist matches!
+}
+}
+}
+}
+if (white != -1) return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
+
+var patterns = [{"name":"Pandora","url":"www.pandora.com*","regex":".*www\\.pandora\\.com.*","enabled":true,"temp":false,"whitelist":"Inclusive","type":"wildcard"}], white = -1;
+for (var i=0, sz=patterns.length; i<sz; i++) {
+// ProxyPattern instances
+var p = patterns[i];
+if (p.enabled) {
+if (RegExp(p.regex).test(url)) {
+if (p.whitelist != "Inclusive") {
+// Black takes priority over white -- skip this pattern
+//return "PROXY 192.168.2.136:8122";
+return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
+}
+else if (white == -1) {
+white = i; // store first matched index and continue checking for blacklist matches!
+}
+}
+}
+}
+//if (white != -1) return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
+if (white != -1) return "PROXY 192.168.2.136:8122";
 
 
-// If the hostname matches, send to proxy.
-    if (dnsDomainIs(host, "music.pandora.com") ||
-        shExpMatch(host, "(*music.pandora.com)"))
-        return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
-    if (dnsDomainIs(host, "pandora.com") ||
-        shExpMatch(host, "(*.pandora.com)") ||
-        shExpMatch(host, "(*.cc.com)"))
-        return "PROXY 192.168.2.136:8122";
-
-// If the protocol or URL matches, send direct.
-//    if (url.substring(0, 4)=="ftp:" ||
-//        shExpMatch(url, "http://abcdomain.com/folder/*"))
-//        return "DIRECT";
-
-// If the requested website is hosted within the internal network, send direct.
-    if (isPlainHostName(host) ||
-        shExpMatch(host, "*.local") ||
-        isInNet(dnsResolve(host), "10.0.0.0", "255.0.0.0") ||
-        isInNet(dnsResolve(host), "172.16.0.0",  "255.240.0.0") ||
-        isInNet(dnsResolve(host), "192.168.0.0",  "255.255.0.0") ||
-        isInNet(dnsResolve(host), "127.0.0.0", "255.255.255.0"))
-        return "DIRECT";
- 
 // If the IP address of the local machine is within a defined
 // subnet, send to a specific proxy.
     if (isInNet(myIpAddress(), "192.168.2.0", "255.255.255.0"))
-        return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
+        return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; PROXY 192.168.2.136:8122; DIRECT";
     if (isInNet(myIpAddress(), "192.168.1.0", "255.255.255.0"))
         return "PROXY 192.168.1.37:8123; PROXY 192.168.2.145:8124; DIRECT";
     if (isInNet(myIpAddress(), "192.168.4.0", "255.255.255.0"))
@@ -47,5 +69,4 @@ function FindProxyForURL(url, host) {
  
 // DEFAULT RULE: All other traffic, use below proxies, in fail-over order.
     return "DIRECT";
- 
 }
