@@ -17,7 +17,7 @@ function FindProxyForURL(url, host) {
         return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
     if (dnsDomainIs(host, "pandora.com") ||
         shExpMatch(host, "(*.pandora.com)") ||
-        shExpMatch(host, "(*.cc.com)")
+        shExpMatch(host, "(*.cc.com)"))
         return "PROXY 192.168.2.136:8122";
 
 // If the protocol or URL matches, send direct.
