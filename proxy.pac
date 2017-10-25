@@ -55,8 +55,8 @@ function FindProxyForURL(url, host) {
 
     var patterns = [{
             "name": "Pandora",
-            "url": "www.pandora.com*",
-            "regex": ".*www\\.pandora\\.com.*",
+            "url": "*.pandora.com*",
+            "regex": ".*(?!music)\\.pandora\\.com.*",
             "enabled": true,
             "temp": false,
             "whitelist": "Inclusive",
