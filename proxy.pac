@@ -66,7 +66,7 @@ function FindProxyForURLEx(url, host) {
     var patterns = [{
             "name": "Pandora",
             "url": "*.pandora.com*",
-            "regex": ".*(?!music)\\.pandora\\.com.*",
+            "regex": ".*(?!((audio)|(music)))\\.pandora\\.com.*",
             "enabled": true,
             "temp": false,
             "whitelist": "Inclusive",
@@ -168,8 +168,8 @@ function FindProxyForURL(url, host) {
     var proxymatt = "PROXY 192.168.2.145:8124";
     var proxyvpn = "PROXY 192.168.2.136:8122";
     var proxybill = "PROXY 192.168.1.37:8123";
-    var proxymain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
-    var proxyalt = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    var proxyalt = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
+    var proxymain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
     var mattchain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
     var billchain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
     
@@ -231,7 +231,7 @@ function FindProxyForURL(url, host) {
     var patterns = [{
             "name": "Pandora",
             "url": "*.pandora.com*",
-            "regex": ".*(?!music)\\.pandora\\.com.*",
+            "regex": ".*(?!((audio)|(music)))\\.pandora\\.com.*",
             "enabled": true,
             "temp": false,
             "whitelist": "Inclusive",
