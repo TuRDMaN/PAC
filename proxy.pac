@@ -1,5 +1,5 @@
 function FindProxyForURLEx(url, host) {
-    ## Populate variables for proxy chain configs
+    // Populate variables for proxy chain configs
     var proxymatt = "PROXY 192.168.2.145:8124";
     var proxyvpn = "PROXY 192.168.2.136:8122";
     var proxybill = "PROXY 192.168.1.37:8123";
@@ -8,7 +8,7 @@ function FindProxyForURLEx(url, host) {
     var mattchain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
     var billchain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
     
-    ## Begin PAC
+    // Begin PAC
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
@@ -158,11 +158,13 @@ function FindProxyForURLEx(url, host) {
     return proxymain;
 }
 
-##############################################################
-##############################################################
+//##############################################################
+//##############################################################
+//##############################################################
+//##############################################################
 
 function FindProxyForURL(url, host) {
-    ## Populate variables for proxy chain configs
+    // Populate variables for proxy chain configs
     var proxymatt = "PROXY 192.168.2.145:8124";
     var proxyvpn = "PROXY 192.168.2.136:8122";
     var proxybill = "PROXY 192.168.1.37:8123";
@@ -171,7 +173,7 @@ function FindProxyForURL(url, host) {
     var mattchain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
     var billchain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
     
-    ## Begin PAC
+    // Begin PAC
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
