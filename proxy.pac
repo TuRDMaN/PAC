@@ -1,9 +1,14 @@
 function FindProxyForURLEx(url, host) {
+    ## Populate variables for proxy chain configs
     var proxymatt = "PROXY 192.168.2.145:8124";
     var proxyvpn = "PROXY 192.168.2.136:8122";
     var proxybill = "PROXY 192.168.1.37:8123";
     var proxymain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
     var proxyalt = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    var mattchain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
+    var billchain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    
+    ## Begin PAC
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
@@ -89,9 +94,9 @@ function FindProxyForURLEx(url, host) {
     // If the IP address of the local machine is within a defined
     // subnet, send to a specific proxy.
     if (dnsResolve("wpad.matt.lan"))
-        return proxymain;
+        return mattchain;
     if (dnsResolve("wpad.bill.lan"))
-        return proxyalt;    
+        return billchain;    
     
     var patterns = [{
             "name": "Instagram",
@@ -153,12 +158,20 @@ function FindProxyForURLEx(url, host) {
     return proxymain;
 }
 
+##############################################################
+##############################################################
+
 function FindProxyForURL(url, host) {
+    ## Populate variables for proxy chain configs
     var proxymatt = "PROXY 192.168.2.145:8124";
     var proxyvpn = "PROXY 192.168.2.136:8122";
     var proxybill = "PROXY 192.168.1.37:8123";
     var proxymain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
     var proxyalt = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    var mattchain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
+    var billchain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    
+    ## Begin PAC
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
@@ -244,9 +257,9 @@ function FindProxyForURL(url, host) {
     // If the IP address of the local machine is within a defined
     // subnet, send to a specific proxy.
     if (dnsResolve("wpad.matt.lan"))
-        return proxymain;
+        return mattchain;
     if (dnsResolve("wpad.bill.lan"))
-        return proxyalt;    
+        return billchain;    
     
     var patterns = [{
             "name": "Instagram",
