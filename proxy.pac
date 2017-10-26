@@ -1,8 +1,8 @@
 function FindProxyForURLEx(url, host) {
-    var proxymatt = "PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122; PROXY 192.168.1.37:8123; DIRECT";
-    var proxybill = "PROXY 192.168.1.37:8123; PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122; DIRECT";
-    var proxymain = proxymatt;
-    var proxyalt = proxybill;
+    var proxymatt = "PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122";
+    var proxybill = "PROXY 192.168.1.37:8123";
+    var proxymain = proxymatt+"; "+proxybill+"; DIRECT";
+    var proxyalt = proxybill+"; "+proxymatt+"; DIRECT";
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
@@ -87,14 +87,10 @@ function FindProxyForURLEx(url, host) {
 
     // If the IP address of the local machine is within a defined
     // subnet, send to a specific proxy.
-    if (isInNet(myIpAddress(), "192.168.2.0", "255.255.255.0"))
+    if (dnsResolve("wpad.matt.lan"))
         return "proxymatt";
-    if (isInNet(myIpAddress(), "192.168.1.0", "255.255.255.0"))
-        return "proxybill";
-    if (isInNet(myIpAddress(), "192.168.4.0", "255.255.255.0"))
-        return "proxymatt";
-    if (isInNet(myIpAddress(), "192.168.3.0", "255.255.255.0"))
-        return "proxymatt";
+    if (dnsResolve("wpad.bill.lan"))
+        return "proxybill";    
     
     var patterns = [{
             "name": "Instagram",
@@ -157,10 +153,10 @@ function FindProxyForURLEx(url, host) {
 }
 
 function FindProxyForURL(url, host) {
-    var proxymatt = '"PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122; PROXY 192.168.1.37:8123; DIRECT"';
-    var proxybill = '"PROXY 192.168.1.37:8123; PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122; DIRECT"';
-    var proxymain = proxymatt;
-    var proxyalt = proxybill;
+    var proxymatt = "PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122";
+    var proxybill = "PROXY 192.168.1.37:8123";
+    var proxymain = proxymatt+"; "+proxybill+"; DIRECT";
+    var proxyalt = proxybill+"; "+proxymatt+"; DIRECT";
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
@@ -245,14 +241,10 @@ function FindProxyForURL(url, host) {
 
     // If the IP address of the local machine is within a defined
     // subnet, send to a specific proxy.
-    if (isInNet(myIpAddress(), "192.168.2.0", "255.255.255.0"))
+    if (dnsResolve("wpad.matt.lan"))
         return "proxymatt";
-    if (isInNet(myIpAddress(), "192.168.1.0", "255.255.255.0"))
-        return "proxybill";
-    if (isInNet(myIpAddress(), "192.168.4.0", "255.255.255.0"))
-        return "proxymatt";
-    if (isInNet(myIpAddress(), "192.168.3.0", "255.255.255.0"))
-        return "proxymatt";
+    if (dnsResolve("wpad.bill.lan"))
+        return "proxybill";    
     
     var patterns = [{
             "name": "Instagram",
