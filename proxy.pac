@@ -1,8 +1,14 @@
 function FindProxyForURLEx(url, host) {
-    var proxymatt = "PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122; PROXY 192.168.1.37:8123; DIRECT";
-    var proxybill = "PROXY 192.168.1.37:8123; PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122; DIRECT";
-    var proxymain = proxybill;
-    var proxyalt = proxymatt;
+    // Populate variables for proxy chain configs
+    var proxymatt = "PROXY 192.168.2.145:8124";
+    var proxyvpn = "PROXY 192.168.2.136:8122";
+    var proxybill = "PROXY 192.168.1.37:8123";
+    var proxyalt = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
+    var proxymain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    var mattchain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
+    var billchain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    
+    // Begin PAC
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
@@ -75,7 +81,7 @@ function FindProxyForURLEx(url, host) {
                 if (p.whitelist != "Inclusive") {
                     // Black takes priority over white -- skip this pattern
                     //return "PROXY 192.168.2.136:8122";
-                    return "proxymain";
+                    return proxymain;
                 } else if (white == -1) {
                     white = i; // store first matched index and continue checking for blacklist matches!
                 }
@@ -83,18 +89,14 @@ function FindProxyForURLEx(url, host) {
         }
     }
     //if (white != -1) return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
-    if (white != -1) return "PROXY 192.168.2.136:8122";
+    if (white != -1) return proxyvpn;
 
     // If the IP address of the local machine is within a defined
     // subnet, send to a specific proxy.
-    if (isInNet(myIpAddress(), "192.168.2.0", "255.255.255.0"))
-        return "proxymatt";
-    if (isInNet(myIpAddress(), "192.168.1.0", "255.255.255.0"))
-        return "proxybill";
-    if (isInNet(myIpAddress(), "192.168.4.0", "255.255.255.0"))
-        return "proxymatt";
-    if (isInNet(myIpAddress(), "192.168.3.0", "255.255.255.0"))
-        return "proxymatt";
+    if (dnsResolve("wpad.matt.lan"))
+        return mattchain;
+    if (dnsResolve("wpad.bill.lan"))
+        return billchain;    
     
     var patterns = [{
             "name": "Instagram",
@@ -114,7 +116,7 @@ function FindProxyForURLEx(url, host) {
                 if (p.whitelist != "Inclusive") {
                     // Black takes priority over white -- skip this pattern
                     //return "PROXY 192.168.2.136:8122";
-                    return "proxymain";
+                    return proxymain;
                 } else if (white == -1) {
                     white = i; // store first matched index and continue checking for blacklist matches!
                 }
@@ -122,7 +124,7 @@ function FindProxyForURLEx(url, host) {
         }
     }
     //if (white != -1) return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
-    if (white != -1) return "proxymain";
+    if (white != -1) return proxymain;
     
     var patterns = [{
             "name": "FBCDN",
@@ -142,7 +144,7 @@ function FindProxyForURLEx(url, host) {
                 if (p.whitelist != "Inclusive") {
                     // Black takes priority over white -- skip this pattern
                     //return "PROXY 192.168.2.136:8122";
-                    return "proxymain";
+                    return proxymain;
                 } else if (white == -1) {
                     white = i; // store first matched index and continue checking for blacklist matches!
                 }
@@ -150,17 +152,28 @@ function FindProxyForURLEx(url, host) {
         }
     }
     //if (white != -1) return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
-    if (white != -1) return "proxymain";
+    if (white != -1) return proxymain;
     
     // DEFAULT RULE: All other traffic, use below proxies, in fail-over order.
-    return "proxymain";
+    return proxymain;
 }
 
+//##############################################################
+//##############################################################
+//##############################################################
+//##############################################################
+
 function FindProxyForURL(url, host) {
-    var proxymatt = '"PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122; PROXY 192.168.1.37:8123; DIRECT"';
-    var proxybill = '"PROXY 192.168.1.37:8123; PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122; DIRECT"';
-    var proxymain = proxymatt;
-    var proxyalt = proxybill;
+    // Populate variables for proxy chain configs
+    var proxymatt = "PROXY 192.168.2.145:8124";
+    var proxyvpn = "PROXY 192.168.2.136:8122";
+    var proxybill = "PROXY 192.168.1.37:8123";
+    var proxymain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
+    var proxyalt = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    var mattchain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
+    var billchain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    
+    // Begin PAC
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
@@ -233,7 +246,7 @@ function FindProxyForURL(url, host) {
                 if (p.whitelist != "Inclusive") {
                     // Black takes priority over white -- skip this pattern
                     //return "PROXY 192.168.2.136:8122";
-                    return "proxymain";
+                    return proxymain;
                 } else if (white == -1) {
                     white = i; // store first matched index and continue checking for blacklist matches!
                 }
@@ -241,18 +254,14 @@ function FindProxyForURL(url, host) {
         }
     }
     //if (white != -1) return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
-    if (white != -1) return "PROXY 192.168.2.136:8122";
+    if (white != -1) return proxyvpn;
 
     // If the IP address of the local machine is within a defined
     // subnet, send to a specific proxy.
-    if (isInNet(myIpAddress(), "192.168.2.0", "255.255.255.0"))
-        return "proxymatt";
-    if (isInNet(myIpAddress(), "192.168.1.0", "255.255.255.0"))
-        return "proxybill";
-    if (isInNet(myIpAddress(), "192.168.4.0", "255.255.255.0"))
-        return "proxymatt";
-    if (isInNet(myIpAddress(), "192.168.3.0", "255.255.255.0"))
-        return "proxymatt";
+    if (dnsResolve("wpad.matt.lan"))
+        return mattchain;
+    if (dnsResolve("wpad.bill.lan"))
+        return billchain;    
     
     var patterns = [{
             "name": "Instagram",
@@ -272,7 +281,7 @@ function FindProxyForURL(url, host) {
                 if (p.whitelist != "Inclusive") {
                     // Black takes priority over white -- skip this pattern
                     //return "PROXY 192.168.2.136:8122";
-                    return "proxymain";
+                    return proxymain;
                 } else if (white == -1) {
                     white = i; // store first matched index and continue checking for blacklist matches!
                 }
@@ -280,7 +289,7 @@ function FindProxyForURL(url, host) {
         }
     }
     //if (white != -1) return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
-    if (white != -1) return "proxymain";
+    if (white != -1) return proxymain;
     
     var patterns = [{
             "name": "FBCDN",
@@ -300,7 +309,7 @@ function FindProxyForURL(url, host) {
                 if (p.whitelist != "Inclusive") {
                     // Black takes priority over white -- skip this pattern
                     //return "PROXY 192.168.2.136:8122";
-                    return "proxymain";
+                    return proxymain;
                 } else if (white == -1) {
                     white = i; // store first matched index and continue checking for blacklist matches!
                 }
@@ -308,8 +317,8 @@ function FindProxyForURL(url, host) {
         }
     }
     //if (white != -1) return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
-    if (white != -1) return "proxymain";
+    if (white != -1) return proxymain;
     
     // DEFAULT RULE: All other traffic, use below proxies, in fail-over order.
-    return "proxymain";
+    return proxymain;
 }
