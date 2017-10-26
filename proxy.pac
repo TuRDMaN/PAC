@@ -1,4 +1,4 @@
-function FindProxyForURLEx(url, host) {
+function FindProxyForURL(url, host) {
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
@@ -125,7 +125,7 @@ function FindProxyForURLEx(url, host) {
     return "PROXY 192.168.1.37:8123; PROXY 192.168.2.145:8124; PROXY 192.168.2.136:8122; DIRECT";
 }
 
-function FindProxyForURL(url, host) {
+function FindProxyForURLEx(url, host) {
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
