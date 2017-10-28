@@ -5,10 +5,10 @@ function FindProxyForURLEx(url, host) {
     var proxyvpn = "PROXY 192.168.2.136:8122";
     var proxypine = "PROXY 192.168.1.37:8123";
     var proxyunraid = "PROXY 192.168.1.36:8123";
-    var proxyalt = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var proxymain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
-    var mattchain = proxyalt;
-    var billchain = proxymain;
+    var mattchain = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
+    var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
+    var proxymain = mattchain;
+    var proxyalt = billchain;
     
     // Begin PAC
     var patterns = [{
@@ -166,16 +166,16 @@ function FindProxyForURLEx(url, host) {
 //##############################################################
 
 function FindProxyForURL(url, host) {
-    // Populate variables for proxy chain configs    
+    // Populate variables for proxy chain configs
     var proxypi = "PROXY 192.168.2.145:8124";
     var proxybiggie = "PROXY 192.168.2.136:8123";
     var proxyvpn = "PROXY 192.168.2.136:8122";
     var proxypine = "PROXY 192.168.1.37:8123";
     var proxyunraid = "PROXY 192.168.1.36:8123";
-    var proxyalt = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var proxymain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
-    var mattchain = proxyalt;
-    var billchain = proxymain;
+    var mattchain = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
+    var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
+    var proxymain = mattchain;
+    var proxyalt = billchain;
     
     // Begin PAC
     var patterns = [{
@@ -299,34 +299,6 @@ function FindProxyForURL(url, host) {
             "name": "FBCDN",
             "url": "*.fbcdn.net*",
             "regex": ".*\\.fbcdn\\.net.*",
-            "enabled": true,
-            "temp": false,
-            "whitelist": "Inclusive",
-            "type": "wildcard"
-        }],
-        white = -1;
-    for (var i = 0, sz = patterns.length; i < sz; i++) {
-        // ProxyPattern instances
-        var p = patterns[i];
-        if (p.enabled) {
-            if (RegExp(p.regex).test(url)) {
-                if (p.whitelist != "Inclusive") {
-                    // Black takes priority over white -- skip this pattern
-                    //return "PROXY 192.168.2.136:8122";
-                    return proxymain;
-                } else if (white == -1) {
-                    white = i; // store first matched index and continue checking for blacklist matches!
-                }
-            }
-        }
-    }
-    //if (white != -1) return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
-    if (white != -1) return proxymain;
-    
-    var patterns = [{
-            "name": "Facebook",
-            "url": "*.facebook.com*",
-            "regex": ".*\\.facebook\\.com.*",
             "enabled": true,
             "temp": false,
             "whitelist": "Inclusive",
