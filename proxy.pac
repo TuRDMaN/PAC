@@ -5,10 +5,10 @@ function FindProxyForURLEx(url, host) {
     var proxyvpn = "PROXY 192.168.2.136:8122";
     var proxypine = "PROXY 192.168.1.37:8123";
     var proxyunraid = "PROXY 192.168.1.36:8123";
-    var proxymain = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var proxyalt = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
-    var mattchain = proxymain;
-    var billchain = proxyalt;
+    var mattchain = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
+    var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
+    var proxymain = mattchain;
+    var proxyalt = billchain;
     
     // Begin PAC
     var patterns = [{
@@ -166,16 +166,16 @@ function FindProxyForURLEx(url, host) {
 //##############################################################
 
 function FindProxyForURL(url, host) {
-    // Populate variables for proxy chain configs    
+    // Populate variables for proxy chain configs
     var proxypi = "PROXY 192.168.2.145:8124";
     var proxybiggie = "PROXY 192.168.2.136:8123";
     var proxyvpn = "PROXY 192.168.2.136:8122";
     var proxypine = "PROXY 192.168.1.37:8123";
     var proxyunraid = "PROXY 192.168.1.36:8123";
-    var proxymain = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var proxyalt = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
-    var mattchain = proxymain;
-    var billchain = proxyalt;
+    var mattchain = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
+    var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
+    var proxymain = mattchain;
+    var proxyalt = billchain;
     
     // Begin PAC
     var patterns = [{
