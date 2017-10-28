@@ -1,12 +1,14 @@
 function FindProxyForURLEx(url, host) {
     // Populate variables for proxy chain configs
-    var proxymatt = "PROXY 192.168.2.145:8124";
+    var proxypi = "PROXY 192.168.2.145:8124";
+    var proxybiggie = "PROXY 192.168.2.136:8123";
     var proxyvpn = "PROXY 192.168.2.136:8122";
-    var proxybill = "PROXY 192.168.1.37:8123";
-    var proxyalt = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
-    var proxymain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
-    var mattchain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
-    var billchain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    var proxypine = "PROXY 192.168.1.37:8123";
+    var proxyunraid = "PROXY 192.168.1.36:8123";
+    var proxyalt = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
+    var proxymain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
+    var mattchain = proxyalt;
+    var billchain = proxymain;
     
     // Begin PAC
     var patterns = [{
@@ -164,14 +166,16 @@ function FindProxyForURLEx(url, host) {
 //##############################################################
 
 function FindProxyForURL(url, host) {
-    // Populate variables for proxy chain configs
-    var proxymatt = "PROXY 192.168.2.145:8124";
+    // Populate variables for proxy chain configs    
+    var proxypi = "PROXY 192.168.2.145:8124";
+    var proxybiggie = "PROXY 192.168.2.136:8123";
     var proxyvpn = "PROXY 192.168.2.136:8122";
-    var proxybill = "PROXY 192.168.1.37:8123";
-    var proxyalt = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
-    var proxymain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
-    var mattchain = proxymatt+"; "+proxyvpn+"; "+proxybill+"; DIRECT";
-    var billchain = proxybill+"; "+proxymatt+"; "+proxyvpn+"; DIRECT";
+    var proxypine = "PROXY 192.168.1.37:8123";
+    var proxyunraid = "PROXY 192.168.1.36:8123";
+    var proxyalt = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
+    var proxymain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
+    var mattchain = proxyalt;
+    var billchain = proxymain;
     
     // Begin PAC
     var patterns = [{
