@@ -12,6 +12,32 @@ function FindProxyForURLEx(url, host) {
     
     // Begin PAC
     var patterns = [{
+            "name": "Localhost",
+            "url": "*127.0.0.1*",
+            "regex": ".*127\\.0\\.0\\.1.*",
+            "enabled": true,
+            "temp": false,
+            "whitelist": "Inclusive",
+            "type": "wildcard"
+        }],
+        white = -1;
+    for (var i = 0, sz = patterns.length; i < sz; i++) {
+        // ProxyPattern instances
+        var p = patterns[i];
+        if (p.enabled) {
+            if (RegExp(p.regex).test(url)) {
+                if (p.whitelist != "Inclusive") {
+                    // Black takes priority over white -- skip this pattern
+                    return "DIRECT";
+                } else if (white == -1) {
+                    white = i; // store first matched index and continue checking for blacklist matches!
+                }
+            }
+        }
+    }
+    if (white != -1) return "DIRECT";
+    
+    var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
             "regex": ".*192\\.168\\..*\\..*",
