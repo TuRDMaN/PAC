@@ -7,8 +7,8 @@ function FindProxyForURLEx(url, host) {
     var proxyunraid = "PROXY 192.168.1.36:8123";
     var mattchain = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
-    var proxyalt = mattchain;
-    var proxymain = billchain;
+    var proxymain = mattchain;
+    var proxyalt = billchain;
     
     // Begin PAC
     var patterns = [{
