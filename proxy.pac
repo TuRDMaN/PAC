@@ -7,10 +7,36 @@ function FindProxyForURLEx(url, host) {
     var proxyunraid = "PROXY 192.168.1.36:8123";
     var mattchain = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
-    var proxyalt = mattchain;
-    var proxymain = billchain;
+    var proxymain = mattchain;
+    var proxyalt = billchain;
     
     // Begin PAC
+    var patterns = [{
+            "name": "Localhost",
+            "url": "*127.0.0.1*",
+            "regex": ".*127\\.0\\.0\\.1.*",
+            "enabled": true,
+            "temp": false,
+            "whitelist": "Inclusive",
+            "type": "wildcard"
+        }],
+        white = -1;
+    for (var i = 0, sz = patterns.length; i < sz; i++) {
+        // ProxyPattern instances
+        var p = patterns[i];
+        if (p.enabled) {
+            if (RegExp(p.regex).test(url)) {
+                if (p.whitelist != "Inclusive") {
+                    // Black takes priority over white -- skip this pattern
+                    return "DIRECT";
+                } else if (white == -1) {
+                    white = i; // store first matched index and continue checking for blacklist matches!
+                }
+            }
+        }
+    }
+    if (white != -1) return "DIRECT";
+    
     var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
