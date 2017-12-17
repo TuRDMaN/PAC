@@ -90,63 +90,12 @@ function FindProxyForURLEx(url, host) {
     }
     if (white != -1) return proxyvpn;
     */
-    
-    var patterns = [{
-            "name": "Snapchat",
-            "url": "*.snapchat.com*",
-            "regex": ".*\\.snapchat\\.com.*",
-            "enabled": true,
-            "temp": false,
-            "whitelist": "Inclusive",
-            "type": "wildcard"
-        }],
-        white = -1;
-    for (var i = 0, sz = patterns.length; i < sz; i++) {
-        // ProxyPattern instances
-        var p = patterns[i];
-        if (p.enabled) {
-            if (RegExp(p.regex).test(url)) {
-                if (p.whitelist != "Inclusive") {
-                    // Black takes priority over white -- skip this pattern
-                    return proxymain;
-                } else if (white == -1) {
-                    white = i; // store first matched index and continue checking for blacklist matches!
-                }
-            }
-        }
-    }
-    if (white != -1) return DIRECT;
-    
-    var patterns = [{
-            "name": "Snapchat2",
-            "url": "*.sc-*.*",
-            "regex": ".*\\.sc\\-.*\\..*",
-            "enabled": true,
-            "temp": false,
-            "whitelist": "Inclusive",
-            "type": "wildcard"
-        }],
-        white = -1;
-    for (var i = 0, sz = patterns.length; i < sz; i++) {
-        // ProxyPattern instances
-        var p = patterns[i];
-        if (p.enabled) {
-            if (RegExp(p.regex).test(url)) {
-                if (p.whitelist != "Inclusive") {
-                    // Black takes priority over white -- skip this pattern
-                    return proxymain;
-                } else if (white == -1) {
-                    white = i; // store first matched index and continue checking for blacklist matches!
-                }
-            }
-        }
-    }
-    if (white != -1) return DIRECT;
-    
+      
     var patterns = [{
             "name": "Pandora",
             "url": "*.pandora.com*",
-            "regex": ".*(?!((audio)|(music)))\\.pandora\\.com.*",
+            //"regex": ".*(?!((audio)|(music)))\\.pandora\\.com.*",
+            "regex": ".*\\.pandora\\..*",
             "enabled": true,
             "temp": false,
             "whitelist": "Inclusive",
@@ -208,6 +157,34 @@ function FindProxyForURLEx(url, host) {
             "name": "FBCDN",
             "url": "*.fbcdn.net*",
             "regex": ".*\\.fbcdn\\.net.*",
+            "enabled": true,
+            "temp": false,
+            "whitelist": "Inclusive",
+            "type": "wildcard"
+        }],
+        white = -1;
+    for (var i = 0, sz = patterns.length; i < sz; i++) {
+        // ProxyPattern instances
+        var p = patterns[i];
+        if (p.enabled) {
+            if (RegExp(p.regex).test(url)) {
+                if (p.whitelist != "Inclusive") {
+                    // Black takes priority over white -- skip this pattern
+                    //return "PROXY 192.168.2.136:8122";
+                    return proxymain;
+                } else if (white == -1) {
+                    white = i; // store first matched index and continue checking for blacklist matches!
+                }
+            }
+        }
+    }
+    //if (white != -1) return "PROXY 192.168.2.145:8124; PROXY 192.168.1.37:8123; DIRECT";
+    if (white != -1) return proxymain;
+    
+    var patterns = [{
+            "name": "Snapchat",
+            "url": "*.snapchat.com*",
+            "regex": ".*\\.snapchat\\.com.*",
             "enabled": true,
             "temp": false,
             "whitelist": "Inclusive",
