@@ -37,7 +37,6 @@ function FindProxyForURL(url, host) {
     }
     if (white != -1) return "DIRECT";
     
-    // Begin PAC
     var patterns = [{
             "name": "Localhost2",
             "url": "*localhost*",
