@@ -1,12 +1,14 @@
 function FindProxyForURL(url, host) {
     // Populate variables for proxy chain configs
-    var proxypi = "HTTP 192.168.2.145:8124; PROXY 192.168.2.145:8124";
-    var proxybiggie = "HTTP  192.168.2.136:8123; PROXY 192.168.2.136:8123";
-    var proxyvpn = "HTTP 192.168.2.136:8122; PROXY 192.168.2.136:8122";
-    var proxypine = "HTTP 192.168.1.37:8123; PROXY 192.168.1.37:8123";
-    var proxyunraid = "HTTP  192.168.1.36:8123; PROXY 192.168.1.36:8123";
-    var mattchain = proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";    
+    var proxypi = "PROXY 192.168.2.145:8124";
+    var proxybiggie = "PROXY 192.168.2.136:8123";
+    var proxyvpn = "PROXY 192.168.2.136:8122";
+    var proxypine = "PROXY 192.168.1.37:8123";
+    var proxyunraid = "PROXY 192.168.1.36:8123";
+    var proxydido = "PROXY 192.168.3.12:3128";
+    var mattchain = proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
+    var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
+    var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var proxymain = mattchain;
     var proxyalt = billchain;
     
@@ -146,10 +148,10 @@ function FindProxyForURL(url, host) {
 
     // If the IP address of the local machine is within a defined
     // subnet, send to a specific proxy.
-    if (dnsResolve("wpad.matt.lan"))
-        return mattchain;
-    if (dnsResolve("wpad.bill.lan"))
-        return billchain;    
+    //if (dnsResolve("wpad.matt.lan"))
+    //    return mattchain;
+    //if (dnsResolve("wpad.bill.lan"))
+    //    return billchain;    
     
     var patterns = [{
             "name": "Instagram",
