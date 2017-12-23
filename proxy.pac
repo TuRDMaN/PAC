@@ -9,8 +9,8 @@ function FindProxyForURL(url, host) {
     var mattchain = proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
     var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var proxyalt = mattchain;
-    var proxymain = billchain;
+    var proxymain = mattchain;
+    var proxyalt = billchain;
     
     // Begin PAC
     var patterns = [{
