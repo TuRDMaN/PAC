@@ -10,7 +10,7 @@ function FindProxyForURL(url, host) {
     var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
     var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var proxyalt = mattchain;
-    var proxymain = billchain;
+    var proxymain = didochain;
     
     // Begin PAC
     var patterns = [{
