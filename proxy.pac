@@ -3,14 +3,14 @@ function FindProxyForURL(url, host) {
     var proxypi = "PROXY 192.168.2.145:8124";
     var proxybiggie = "PROXY 192.168.2.136:8123";
     var proxyvpn = "PROXY 192.168.2.136:8122";
-    var proxypine = "PROXY 192.168.1.37:8123";
+    var proxypine = "PROXY 192.168.1.37:8124";
     var proxyunraid = "PROXY 192.168.1.36:8123";
     var proxydido = "PROXY 192.168.3.12:3128";
     var mattchain = proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
     var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var proxyalt = mattchain;
-    var proxymain = billchain;
+    var proxymain = mattchain;
+    var proxyalt = billchain;
     
     // Begin PAC
     var patterns = [{
