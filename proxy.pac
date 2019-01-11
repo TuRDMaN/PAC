@@ -94,7 +94,7 @@ function FindProxyForURL(url, host) {
             }
         }
     }
-    if (white != -1) return proxyjoel";
+    if (white != -1) return "proxyjoel";
     
     var patterns = [{
             "name": "Local",
