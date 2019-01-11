@@ -6,11 +6,11 @@ function FindProxyForURL(url, host) {
     var proxypine = "PROXY 192.168.1.17:8124";    
     var proxyunraid = "PROXY 192.168.1.36:8123";
     var proxyvpn2 = "PROXY 192.168.1.36:8121";
-    //var proxydido = "PROXY 192.168.3.12:3128";
+    var proxyjoel = "PROXY 192.168.3.2:8124";
     //var mattchain = proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var mattchain = proxypi+"; "+proxypine+"; "+proxybiggie+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
+    var mattchain = proxypi+"; "+proxypine+"; "+proxyjoel+"; "+proxybiggie+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     //var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
-    var billchain = proxypine+"; "+proxypi+"; "+proxyunraid+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";
+    var billchain = proxypine+"; "+proxyjoel+"; "+proxypi+"; "+proxyunraid+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";
     //var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var proxymain = mattchain;
     var proxyalt = billchain;
@@ -150,6 +150,33 @@ function FindProxyForURL(url, host) {
         }
     }    
     if (white != -1) return proxyUS;
+    
+    var patterns = [{
+            "name": "JoelLAN",
+            "url": "*192.168.3.*",
+            //"regex": ".*(?!((audio)|(music)))\\.pandora\\.com.*",
+            "regex": ".*192\\.168\\.\\.3\\..*",
+            "enabled": true,
+            "temp": false,
+            "whitelist": "Inclusive",
+            "type": "wildcard"
+        }],
+        white = -1;
+    for (var i = 0, sz = patterns.length; i < sz; i++) {
+        // ProxyPattern instances
+        var p = patterns[i];
+        if (p.enabled) {
+            if (RegExp(p.regex).test(url)) {
+                if (p.whitelist != "Inclusive") {
+                    // Black takes priority over white -- skip this pattern                    
+                    return proxymain;
+                } else if (white == -1) {
+                    white = i; // store first matched index and continue checking for blacklist matches!
+                }
+            }
+        }
+    }    
+    if (white != -1) return proxyjoel;
 
     // If the IP address of the local machine is within a defined
     // subnet, send to a specific proxy.
