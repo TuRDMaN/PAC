@@ -71,6 +71,32 @@ function FindProxyForURL(url, host) {
     if (white != -1) return "DIRECT";
     
     var patterns = [{
+            "name": "JoelLAN",
+            "url": "*192.168.3.*",
+            "regex": ".*192\\.168\\.3\\..*",
+            "enabled": true,
+            "temp": false,
+            "whitelist": "Inclusive",
+            "type": "wildcard"
+        }],
+        white = -1;
+    for (var i = 0, sz = patterns.length; i < sz; i++) {
+        // ProxyPattern instances
+        var p = patterns[i];
+        if (p.enabled) {
+            if (RegExp(p.regex).test(url)) {
+                if (p.whitelist != "Inclusive") {
+                    // Black takes priority over white -- skip this pattern
+                    return "DIRECT";
+                } else if (white == -1) {
+                    white = i; // store first matched index and continue checking for blacklist matches!
+                }
+            }
+        }
+    }
+    if (white != -1) return proxyjoel";
+    
+    var patterns = [{
             "name": "Local",
             "url": "*192.168.*.*",
             "regex": ".*192\\.168\\..*\\..*",
@@ -151,33 +177,6 @@ function FindProxyForURL(url, host) {
     }    
     if (white != -1) return proxyUS;
     
-    var patterns = [{
-            "name": "JoelLAN",
-            "url": "*192.168.3.*",
-            //"regex": ".*(?!((audio)|(music)))\\.pandora\\.com.*",
-            "regex": ".*192\\.168\\.\\.3\\..*",
-            "enabled": true,
-            "temp": false,
-            "whitelist": "Inclusive",
-            "type": "wildcard"
-        }],
-        white = -1;
-    for (var i = 0, sz = patterns.length; i < sz; i++) {
-        // ProxyPattern instances
-        var p = patterns[i];
-        if (p.enabled) {
-            if (RegExp(p.regex).test(url)) {
-                if (p.whitelist != "Inclusive") {
-                    // Black takes priority over white -- skip this pattern                    
-                    return proxymain;
-                } else if (white == -1) {
-                    white = i; // store first matched index and continue checking for blacklist matches!
-                }
-            }
-        }
-    }    
-    if (white != -1) return proxyjoel;
-
     // If the IP address of the local machine is within a defined
     // subnet, send to a specific proxy.
     //if (dnsResolve("wpad.matt.lan"))
