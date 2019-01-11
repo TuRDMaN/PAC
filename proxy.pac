@@ -87,7 +87,7 @@ function FindProxyForURL(url, host) {
             if (RegExp(p.regex).test(url)) {
                 if (p.whitelist != "Inclusive") {
                     // Black takes priority over white -- skip this pattern
-                    return "DIRECT";
+                    return "proxyjoel";
                 } else if (white == -1) {
                     white = i; // store first matched index and continue checking for blacklist matches!
                 }
