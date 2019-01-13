@@ -6,7 +6,7 @@ function FindProxyForURL(url, host) {
     var proxypine = "PROXY 192.168.1.17:8124";    
     var proxyunraid = "PROXY 192.168.1.36:8123";
     var proxyvpn2 = "PROXY 192.168.1.36:8121";
-    var proxyjoel = "PROXY 192.168.3.2:8124";
+    var proxyjoel = "PROXY 192.168.0.4:8124";
     //var mattchain = proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var mattchain = proxypi+"; "+proxypine+"; "+proxyjoel+"; "+proxybiggie+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     //var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
@@ -72,8 +72,8 @@ function FindProxyForURL(url, host) {
     
     var patterns = [{
             "name": "JoelLAN",
-            "url": "*192.168.3.*",
-            "regex": ".*192\\.168\\.3\\..*",
+            "url": "*192.168.0.*",
+            "regex": ".*192\\.168\\.0\\..*",
             "enabled": true,
             "temp": false,
             "whitelist": "Inclusive",
