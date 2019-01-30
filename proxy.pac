@@ -5,7 +5,7 @@ function FindProxyForURL(url, host) {
     var proxyvpn = "PROXY 192.168.1.56:8122";
     var proxypine = "PROXY 192.168.1.17:8124";    
     var proxyunraid = "PROXY 192.168.1.36:8123";
-    var proxyvpn2 = "PROXY 192.168.1.36:8121";
+    var proxyvpn2 = "PROXY 192.168.1.36:8122";
     var proxyjoel = "PROXY 192.168.0.4:8124";
     //var mattchain = proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var mattchain = proxypi+"; "+proxypine+"; "+proxyjoel+"; "+proxybiggie+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
@@ -14,8 +14,8 @@ function FindProxyForURL(url, host) {
     //var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var proxymain = mattchain;
     var proxyalt = billchain;
-    //var proxyUS = proxyvpn+"; "+proxyvpn2;
-    var proxyUS = proxyvpn;
+    var proxyUS = proxyvpn+"; "+proxyvpn2;
+    //var proxyUS = proxyvpn;
     
     // Begin PAC
     var patterns = [{
