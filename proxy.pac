@@ -2,7 +2,7 @@ function FindProxyForURL(url, host) {
     // Populate variables for proxy chain configs
     var proxypi = "PROXY 192.168.1.18:8124";
     var proxybiggie = "PROXY 192.168.1.56:8123";
-    var proxyvpn = "PROXY 192.168.1.56:8122";
+    var proxyvpn = "PROXY 192.168.1.56:8118";
     var proxypine = "PROXY 192.168.1.17:8124";    
     var proxyunraid = "PROXY 192.168.1.36:8123";
     var proxyvpn2 = "PROXY 192.168.1.36:8122";
