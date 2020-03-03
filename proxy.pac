@@ -6,15 +6,16 @@ function FindProxyForURL(url, host) {
     var proxypine = "PROXY 192.168.1.17:8124";    
     var proxyunraid = "PROXY 192.168.1.36:8123";
     var proxyvpn2 = "PROXY 192.168.1.36:8122";
+    var proxyvpn3 = "PROXY 192.168.1.56:8122";
     var proxyjoel = "PROXY 192.168.0.4:8124";
     //var mattchain = proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var mattchain = proxypi+"; "+proxypine+"; "+proxyjoel+"; "+proxybiggie+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
+    var mattchain = proxypi+"; "+proxypine+"; "+proxyjoel+"; "+proxybiggie+"; "+proxyunraid+"; DIRECT";
     //var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
-    var billchain = proxypine+"; "+proxyjoel+"; "+proxypi+"; "+proxyunraid+"; "+proxybiggie+"; "+proxyvpn+"; DIRECT";
+    var billchain = proxypine+"; "+proxyjoel+"; "+proxypi+"; "+proxyunraid+"; "+proxybiggie+"; DIRECT";
     //var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var proxymain = billchain;
     var proxyalt = mattchain;
-    var proxyUS = proxyvpn2+"; "+proxyvpn;
+    var proxyUS = proxyvpn+"; "+proxyvpn2+"; "+proxyvpn3;
     //var proxyUS = proxyvpn;
     
     // Begin PAC
