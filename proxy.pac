@@ -13,8 +13,8 @@ function FindProxyForURL(url, host) {
     //var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
     var billchain = proxypine+"; "+proxyjoel+"; "+proxypi+"; "+proxyunraid+"; "+proxybiggie+"; DIRECT";
     //var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var proxymain = mattchain;
-    var proxyalt = billchain;
+    var proxymain = billchain;
+    var proxyalt = mattchain;
     var proxyUS = proxyvpn+"; "+proxyvpn2+"; "+proxyvpn3;
     //var proxyUS = proxyvpn;
     
