@@ -203,7 +203,34 @@ function FindProxyForURL(url, host) {
                 }
             }
         }
-    }    
+    }
+    if (white != -1) return proxyUS;
+    
+    var patterns = [{
+            "name": "Amazon Music",
+            "url": "*music.amazon.com*",
+            //"regex": ".*(?!((audio)|(music)))\\.pandora\\.com.*",
+            "regex": ".*music\\.amazon\\..*",
+            "enabled": true,
+            "temp": false,
+            "whitelist": "Inclusive",
+            "type": "wildcard"
+        }],
+        white = -1;
+    for (var i = 0, sz = patterns.length; i < sz; i++) {
+        // ProxyPattern instances
+        var p = patterns[i];
+        if (p.enabled) {
+            if (RegExp(p.regex).test(url)) {
+                if (p.whitelist != "Inclusive") {
+                    // Black takes priority over white -- skip this pattern                    
+                    return proxymain;
+                } else if (white == -1) {
+                    white = i; // store first matched index and continue checking for blacklist matches!
+                }
+            }
+        }
+    }
     if (white != -1) return proxyUS;
     
     // If the IP address of the local machine is within a defined
