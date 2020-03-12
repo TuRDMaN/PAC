@@ -16,7 +16,7 @@ function FindProxyForURL(url, host) {
     var joelchain = proxyjoel+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; DIRECT";
     var proxymain = joelchain;
     var proxyalt = mattchain;
-    var proxyUS = proxyvpn+"; "+proxyvpn2+"; "+proxyvpn3;
+    var proxyUS = proxyvpn2+"; "+proxyvpn+"; "+proxyvpn3;
     //var proxyUS = proxyvpn;
     
     // Begin PAC
