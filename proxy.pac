@@ -9,10 +9,13 @@ function FindProxyForURL(url, host) {
     var proxyvpn3 = "PROXY 192.168.1.56:8122";
     var proxyjoel = "PROXY 192.168.0.4:8124";
     //var mattchain = proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var mattchain = proxypi+"; "+proxypine+"; "+proxyjoel+"; "+proxybiggie+"; "+proxyunraid+"; DIRECT";
+    //var mattchain = proxypi+"; "+proxypine+"; "+proxyjoel+"; "+proxybiggie+"; "+proxyunraid+"; DIRECT";
+    var mattchain = proxypi+"; "+proxypine+"; "+proxybiggie+"; "+proxyunraid+"; DIRECT";
     //var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
-    var billchain = proxypine+"; "+proxyjoel+"; "+proxypi+"; "+proxyunraid+"; "+proxybiggie+"; DIRECT";
+    //var billchain = proxypine+"; "+proxyjoel+"; "+proxypi+"; "+proxyunraid+"; "+proxybiggie+"; DIRECT";
+    var billchain = proxypine+"; "+proxypi+"; "+proxyunraid+"; "+proxybiggie+"; DIRECT";
     //var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
+    var joelchain = proxyjoel+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; DIRECT";
     var proxymain = billchain;
     var proxyalt = mattchain;
     var proxyUS = proxyvpn2+"; "+proxyvpn+"; "+proxyvpn3;
