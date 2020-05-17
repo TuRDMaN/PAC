@@ -16,9 +16,9 @@ function FindProxyForURL(url, host) {
     //var billchain = proxypine+"; "+proxypi+"; "+proxyunraid+"; "+proxybiggie+"; DIRECT";
     //var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var joelchain = proxyjoel+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; DIRECT";
-    var proxymain = billchain;
-    var proxyalt = mattchain;
-    var proxyUS = proxyvpn2+"; "+proxyvpn+"; "+proxyvpn3;
+    var proxymain = mattchain;
+    var proxyalt = billchain;
+    var proxyUS = proxyvpn+"; "+proxyvpn2+"; "+proxyvpn3;
     //var proxyUS = proxyvpn;
     
     // Begin PAC
