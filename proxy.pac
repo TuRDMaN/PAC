@@ -9,7 +9,7 @@ function FindProxyForURL(url, host) {
     var proxyvpn3 = "PROXY redpill.online:8122";
     var proxyjoel = "PROXY 192.168.0.4:8124";
     //var mattchain = proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
-    var mattchain = proxypi+"; "+proxypine+"; "+proxyjoel+"; "+proxybiggie+"; "+proxyunraid+"; DIRECT";
+    var mattchain = proxybiggie+"; "+proxypine+"; "+proxyjoel+"; "+proxyunraid+"; "+proxypi+"; DIRECT";
     //var mattchain = proxypi+"; "+proxypine+"; "+proxybiggie+"; "+proxyunraid+"; DIRECT";
     //var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
     var billchain = proxypine+"; "+proxypi+"; "+proxyjoel+"; "+proxyunraid+"; "+proxybiggie+"; DIRECT";
