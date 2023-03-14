@@ -12,7 +12,7 @@ function FindProxyForURL(url, host) {
     var mattchain = proxybiggie+"; "+proxypine+"; "+proxyjoel+"; "+proxyunraid+"; "+proxypi+"; DIRECT";
     //var mattchain = proxypi+"; "+proxypine+"; "+proxybiggie+"; "+proxyunraid+"; DIRECT";
     //var billchain = proxypine+"; "+proxyunraid+"; "+proxypi+"; "+proxybiggie+"; "+proxydido+"; "+proxyvpn+"; DIRECT";
-    var billchain = proxypine+"; "+proxyunraid+"; "+proxybiggie+"; "+proxyjoel+"; DIRECT";
+    var billchain = proxyunraid+"; "+proxypine+"; "+proxybiggie+"; "+proxyjoel+"; DIRECT";
     //var billchain = proxypine+"; "+proxypi+"; "+proxyunraid+"; "+proxybiggie+"; DIRECT";
     //var didochain = proxydido+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; "+proxyvpn+"; DIRECT";
     var joelchain = proxyjoel+"; "+proxypi+"; "+proxybiggie+"; "+proxypine+"; "+proxyunraid+"; DIRECT";
